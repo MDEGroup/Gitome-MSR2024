@@ -5,7 +5,7 @@ This repository contains the instructions to collect the Gitome dataset availabl
 
 # Introduction 
 
-This repository contains the source code implementation used to replicate the experimental results obtained in the submitted to the 21st International Conference on Mining Software Repositories (MSR204).
+This repository contains the source code implementation used to replicate the experimental results obtained in the submitted study to the 21st International Conference on Mining Software Repositories (MSR204).
 
 "Gitome: a curated dataset for README summarization"
 
