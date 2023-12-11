@@ -1,0 +1,344 @@
+EJS
+ApacheConf
+IDL
+Assembly
+Logtalk
+Objective-C++
+Red
+Solidity
+Rust
+Verilog
+Smarty
+Fluent
+Pyret
+PureScript
+APL
+Ragel
+Sage
+Gnuplot
+ANTLR
+Wren
+MATLAB
+Hy
+Puppet
+D2
+POV-Ray SDL
+Perl 6
+Fennel
+Stata
+Haskell
+Procfile
+AutoHotkey
+Sass
+Classic ASP
+Slim
+NASL
+Volt
+Common Lisp
+Thrift
+Clean
+Handlebars
+Shen
+SaltStack
+Euphoria
+UnrealScript
+Standard ML
+Jupyter Notebook
+Nim
+Processing
+Bro
+Metal
+PureBasic
+Vim Script
+Markdown
+Visual Basic 6.0
+Scilab
+PostScript
+Coq
+TSQL
+RPC
+JSONiq
+SuperCollider
+Yul
+SmPL
+Cython
+Smalltalk
+Visual Basic
+Cool
+xBase
+WebAssembly
+OpenQASM
+RouterOS Script
+RobotFramework
+BitBake
+DIGITAL Command Language
+Isabelle
+Cuda
+MDX
+Groff
+XML
+KakouneScript
+AutoIt
+Asymptote
+MAXScript
+Smali
+COBOL
+1C Enterprise
+Mustache
+XS
+Scheme
+V
+Slash
+Qt Script
+Csound Document
+Common Workflow Language
+PHP
+PLpgSQL
+MoonScript
+Crystal
+AGS Script
+Smithy
+OpenEdge ABL
+Haxe
+Singularity
+jq
+SQF
+ABAP
+Eiffel
+HLSL
+Elixir
+HCL
+ColdFusion
+RAML
+Riot
+Kaitai Struct
+Nemerle
+Objective-C
+Closure Templates
+SystemVerilog
+Scala
+VCL
+TLA
+Brightscript
+SugarSS
+JavaScript
+Vim Snippet
+CWeb
+Faust
+BlitzBasic
+Slice
+Liquid
+Astro
+Circom
+D
+Idris
+AIDL
+RenderScript
+SWIG
+Mermaid
+Agda
+Nunjucks
+Erlang
+BASIC
+ASP
+Awk
+Pan
+Rez
+G-code
+CUE
+Mercury
+Zeek
+Less
+Redcode
+QMake
+SCSS
+Fancy
+OpenSCAD
+Go
+CSS
+Objective-J
+ChucK
+TypeScript
+CAP CDS
+Cairo
+Meson
+Bikeshed
+Io
+Xtend
+Clojure
+nesC
+JSON
+Parrot
+DTrace
+PLSQL
+PowerShell
+Sieve
+Rebol
+OCaml
+Modula-3
+YASnippet
+DM
+J
+VHDL
+Janet
+F
+NCL
+KRL
+XSLT
+LiveScript
+GDB
+Open Policy Agent
+Apex
+Pike
+Dockerfile
+GCC Machine Description
+Protocol Buffer
+AngelScript
+Jinja
+Limbo
+Reason
+Frege
+Ruby
+HiveQL
+YARA
+AsciiDoc
+Inform 7
+Nushell
+XC
+Mako
+Python
+ActionScript
+Velocity Template Language
+LLVM
+Prolog
+Zephir
+GLSL
+Dart
+LOLCODE
+Genie
+Stylus
+NSIS
+M4
+Cap'n Proto
+REXX
+ASP.NET
+WGSL
+Java
+Arc
+Earthly
+Futhark
+AMPL
+M
+PicoLisp
+Vue
+Inno Setup
+Nearley
+CodeQL
+XQuery
+kvlang
+Ada
+mIRC Script
+Chapel
+FreeMarker
+CoffeeScript
+Lex
+Elvish
+Nginx
+WebIDL
+Fortran
+Pawn
+ASL
+Cypher
+Gherkin
+Berry
+PEG.js
+SMT
+MLIR
+Blade
+ShaderLab
+Bicep
+Pascal
+Starlark
+E
+SRecode Template
+Nu
+C
+Tcl
+API Blueprint
+Lua
+Nix
+Monkey C
+Xonsh
+Logos
+VBA
+Kotlin
+SourcePawn
+Visual Basic .NET
+Alloy
+Just
+R
+Missing
+TeX
+ReScript
+Pug
+C++
+NewLisp
+GDScript
+Move
+GAP
+Emacs Lisp
+Racket
+Jsonnet
+QML
+BrighterScript
+VBScript
+Mathematica
+Component Pascal
+Rich Text Format
+Shell
+Perl
+PigLatin
+Julia
+q
+Zig
+AL
+SAS
+eC
+SQLPL
+Hack
+Game Maker Language
+Brainfuck
+DenizenScript
+AspectJ
+Dhall
+AppleScript
+Boo
+Max
+Harbour
+CLIPS
+sed
+Batchfile
+Dafny
+Roff
+Marko
+Makefile
+Vyper
+Forth
+Groovy
+Raku
+Augeas
+CMake
+HTML
+Elm
+Typst
+Twig
+Vala
+Terra
+Yacc
+Factor
+Module Management System
+Haml
+Svelte
+StringTemplate
+Swift
+Fantom

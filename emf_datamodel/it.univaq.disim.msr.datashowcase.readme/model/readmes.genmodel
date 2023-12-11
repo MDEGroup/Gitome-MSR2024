@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/it.univaq.disim.msr.datashowcase.readme/src" modelPluginID="it.univaq.disim.msr.datashowcase.readme"
+    modelName="Readmes" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>readmes.ecore</foreignModel>
+  <genPackages prefix="Readme" disposableProviderFactory="true" ecorePackage="readmes.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="readmes.ecore#//CodeType">
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//CodeType/CODE_SPAN"/>
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//CodeType/IMAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//CodeType/LINK"/>
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//CodeType/IN_LINE_HTML"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="readmes.ecore#//TextType">
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//TextType/EMPHASIS"/>
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//TextType/STRONG_EMPHASIS"/>
+      <genEnumLiterals ecoreEnumLiteral="readmes.ecore#//TextType/RAW_TEXT"/>
+    </genEnums>
+    <genClasses ecoreClass="readmes.ecore#//Gitome">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference readmes.ecore#//Gitome/repositories"/>
+    </genClasses>
+    <genClasses ecoreClass="readmes.ecore#//GitHubRepository">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/repository"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/sourceDataset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/fork"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/stars"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/contributors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/languages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//GitHubRepository/topics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference readmes.ecore#//GitHubRepository/mainReadme"/>
+    </genClasses>
+    <genClasses ecoreClass="readmes.ecore#//Readme">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//Readme/raw_content"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference readmes.ecore#//Readme/codeCells"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference readmes.ecore#//Readme/textCells"/>
+    </genClasses>
+    <genClasses ecoreClass="readmes.ecore#//CodeCells">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//CodeCells/content"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//CodeCells/type"/>
+    </genClasses>
+    <genClasses ecoreClass="readmes.ecore#//TextCell">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//TextCell/content"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute readmes.ecore#//TextCell/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
