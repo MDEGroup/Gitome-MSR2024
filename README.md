@@ -17,6 +17,35 @@ Università degli Studi dell'Aquila, Italy
 
 
 
+# Python components
+
+The Python scripts are organized as follows:
+
+- **config.py**: It contains all the necessary parameters to be configured
+- **miner_utils.py**: It contains all the functions to mine GitHub repositories
+- **data_utils.py**: It contains all the needed functions to perform the data analysis and the statistical part
+- **main.py**: The main file to execute the whole data extraction pipeline
+
+
+
+
+
+# Installation requirements 
+
+To run the scripts, the following Python libraries need to be installed: 
+
+- marko==2.0.1
+- matplotlib==3.8.0
+- numpy==1.26.1
+- pandas==2.1.1
+- PyGithub==2.1.1
+- requests==2.31.0
+- scikit-learn==1.3.2
+- scipy==1.11.3
+- seaborn==0.13.0
+
+
+
 
 
 # Data extraction pipeline
@@ -38,7 +67,7 @@ The sequence of functions is the following:
 
 
 
-with the following list of paramenters: 
+with the following list of parameters: 
 
 - path_unique: Specifies the file path for the unique Github repositories
 - path_document: Indicates the file path for the document repositories
