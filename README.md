@@ -19,14 +19,26 @@ Università degli Studi dell'Aquila, Italy
 
 
 
-## Data extraction pipline
+# Data extraction pipeline
 
 To run the whole pipeline, please run the following command:
 
 ``` python main.py --path_unique "path/to/unique" --path_document "path/to/awesome" --topic "your_topic" --global_stats_file "path/to/global_stats" --global_file "path/to/global" --lang_dict_file "path/to/lang_dict" --langs_stats_file "path/to/langs_stats" --langs_stats_folder "path/to/langs_stats_folder" --langs_aggr_file "path/to/langs_aggr" --support "path/to/support" ```
 
 
-where set as follows: 
+The sequence of functions is the following: 
+
+1. collecting_existing_repo(args.path_unique)
+2. mu.get_document_repo(args.path_awesome, args.topic)
+3. data_preprocessing(args.global_stats_file, args.global_file)
+4. extracting_summarization_data(args.global_file)
+5. compute_domain_stats(args.lang_dict_file, args.global_file, args.langs_stats_file, args.langs_stats_folder)
+6. du.rm_structural_analysis('avg_code', 'avg_text', 'avg_tot', args.langs_aggr_file, args.support)
+
+
+
+
+with the following list of paramenters: 
 
 - path_unique: Specifies the file path for the unique Github repositories
 - path_document: Indicates the file path for the document repositories
@@ -40,6 +52,72 @@ where set as follows:
 - support: The number of supporting repositories for topics/language statistics
 
 It is worth noting that all the abovementioned parameters can be set from the ```config.py``` file. 
+
+
+Alternatively, you can run each function separately to collect individual files. 
+
+## Collecting data from existing datasets
+
+This function collects data from the existing dataset shown in the paper 
+
+``` collecting_existing_repo(args.path_unique) ```
+
+where *path_unique* parameter identifies the unique list of repo, i.e., the ```gitome_repos.txt ```
+
+## Collecting document repositories 
+
+This function collects data from the Github URLs of the considered document repositories according to teh featured topics awesome-lists and description 
+
+``` mu.get_document_repo(args.path_document, args.topic) ```
+
+where *path_document* is the path of the output file with the list of Github repositories and *topic* of the selected featured topic. 
+
+Note that all the GitHub mining-related activity needs to be authorized by setting the parameter **TOKEN** in the ``` config.py``` file.
+
+
+
+
+## Extracting summarization data
+
+Once the data have been mined from GitHub, the process to extract the summarization data can be run using 
+
+``` extracting_summarization_data(args.global_file) ```
+
+where *global_file* is the CSV file obtained by the abovementioned scripts. This process will also produce ```df_stats.csv``` files with the statistics concerning the README files structure for the whole dataset. 
+
+
+
+## Data cleaning 
+
+Before extracting the summarization data, we preprocess the collected data using the following function:
+
+
+``` data_preprocessing(args.global_stats_file, args.global_file)```
+
+In particular, this file will merge the ```df_stats.csv``` file and the ```global.csv``` file for statistical purposes.
+
+
+## README analysis
+
+To replicate the data shown in the paper concerning the application domains, we used the following function:
+
+
+``` du.rm_structural_analysis('avg_code', 'avg_text', 'avg_tot', args.langs_aggr_file, args.support)```
+
+
+In particular, this function will filter the application domains represented by the language and topics according to the support value. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

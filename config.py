@@ -2,7 +2,7 @@
 
 
 # github configs
-TOKEN = "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"
+TOKEN = "your github token go here"
 
 # src path
 
@@ -19,7 +19,7 @@ AWESOME_GLOBAL_DST = "awesome_global.csv"
 SWH_GLOBAL_DST = "swh_python_global.csv"
 JUPYTER_GLOBAL_DST = "jupyter_global.csv"
 GITHUB_DOMAIN_GLOBAL = "github_domain_global.csv"
-UNIQUE_GLOBAL = "spring_repo.csv"
+UNIQUE_GLOBAL = "global.csv"
 
 LIST_RM_ELEMENTS = ["repo_url","headings", "paragraphs", "quotes",
                     "fenced_code", "code", "html", "link",

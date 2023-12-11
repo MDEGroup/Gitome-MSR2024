@@ -603,7 +603,7 @@ def process_url(url_list):
 
 
 
-def add_average_column(df, col1, col2, new_col_name, out_file, threshold):
+def rm_structural_analysis(col1, col2, new_col_name, out_file, threshold):
     df = pd.read_csv(cf.LANGS_STATS_FILE, names=['domain', 'support', 'avg_code', 'avg_text', 'tot'])
     if col1 not in df or col2 not in df:
         raise ValueError("One or both specified columns do not exist in the DataFrame.")
