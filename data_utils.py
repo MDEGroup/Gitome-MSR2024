@@ -26,12 +26,6 @@ def get_already_downloaded(dump_path):
 
 
 def split_csv(input_file_path, lines_per_file=500):
-    """
-    Split a CSV file into multiple smaller files with the same header.
-
-    :param input_file_path: str, path to the input CSV file.
-    :param lines_per_file: int, number of lines per smaller file including the header.
-    """
 
     with open(input_file_path, 'r', encoding='utf8', errors='ignore') as csv_source:
         reader = csv.reader(csv_source)
@@ -60,21 +54,9 @@ def split_csv(input_file_path, lines_per_file=500):
             current_file.close()
 
 
-# Example usage:
-# split_csv("path_to_large_csv.csv")
-
 
 
 def extract_repo_url(csv_file, column_name, txt_file):
-    """
-    Reads a specified column from a CSV file and writes the values to a text file.
-
-    Args:
-    csv_file (str): Path to the CSV file.
-    column_name (str): Name of the column to extract.
-    txt_file (str): Path to the text file where the column values will be written.
-    """
-
     # Read the CSV file
     df = pd.read_csv(csv_file)
 
@@ -88,9 +70,6 @@ def extract_repo_url(csv_file, column_name, txt_file):
                 file.write(f"{cf.GITHUB}{value} \n")
     else:
         print(f"Column '{column_name}' not found in the CSV file.")
-
-# Example usage
-# extract_column_to_txt('path_to_csv.csv', 'column_name', 'output.txt')
 
 
 def preprocess_column(df, column_name):
@@ -121,17 +100,6 @@ def remove_duplicates(csv_file_path, output_file_path=None):
         cleaned_df.to_csv(output_file_path, index=False)
     return cleaned_df
 
-
-def csv_intersection(file1, file2, output_file):
-    # Read the CSV files
-    df1 = pd.read_csv(file1)
-    df2 = pd.read_csv(file2)
-
-    # Find the intersection
-    intersection = pd.merge(df1, df2, how='inner')
-
-    # Write the intersection to a new CSV file
-    intersection.to_csv(output_file, index=False)
 
 def remove_duplicated_repo(list_files, output_file):
     # Read the contents of the first file
@@ -165,70 +133,9 @@ def append_substring_to_lines(input_file, output_file, substring):
         f.writelines(modified_lines)
 
 
-
 def merge_dataframes(df1, df2, common_column):
     merged_df = pd.merge(df1, df2, on=common_column)
     return merged_df
-
-
-
-
-def parse_rm(readme_path, url, output_csv):
-    data = {}
-
-
-    mk = marko.Markdown()
-    with open(readme_path, "r",  encoding='utf-8') as reader:
-        doc = mk.parse(reader.read())
-
-    # Extract headings and code cells
-        headings = [x for x in doc.children if isinstance(x, marko.block.Heading)]
-        paragraphs = [x for x in doc.children if isinstance(x, marko.block.Paragraph)]
-        quotes = [x for x in doc.children if isinstance(x, marko.block.Quote)]
-        fenced_blocks = [x for x in doc.children if isinstance(x, marko.block.FencedCode)]
-        code_blocks = [x for x in doc.children if isinstance(x, marko.block.CodeBlock)]
-        html_blocks = [x for x in doc.children if isinstance(x, marko.block.HTMLBlock)]
-        link_blocks = [x for x in doc.children if isinstance(x, marko.block.LinkRefDef)]
-        blank_lines = [x for x in doc.children if isinstance(x, marko.block.BlankLine)]
-
-        tot_code_blocks = len(code_blocks) + len(fenced_blocks) + len(link_blocks) + len(html_blocks)
-        tot_text_blocks = len(headings) + len(paragraphs) + len(quotes)
-        print(tot_code_blocks, tot_text_blocks)
-
-        # "repo_url", "headings", "paragraphs", "quotes",
-        # "fenced_code", "code", "html", "link",
-        # "tot_code_blocks", "tot_text_blocks", "blank_lines"
-
-        data.update({"repo_url": url,
-                     "headings": len(headings),
-                     "paragraphs": len(paragraphs),
-                     "quotes": len(quotes),
-                     "fenced_code": len(fenced_blocks),
-                     "code": len(code_blocks),
-                     "html": len(html_blocks),
-                     "link": len(link_blocks),
-                     "tot_code_blocks": tot_code_blocks,
-                     "tot_text_blocks" : tot_text_blocks,
-                    "blank_lines" : len(blank_lines)
-                     })
-        df_gh = pd.DataFrame([data])
-        df_gh.to_csv(output_csv, mode='a', header=False, index=False)
-
-    # Save stats_single_lang to CSV
-
-
-
-    # with open(output_csv, "a", newline="") as csvfile:
-    #     csvwriter = csv.writer(csvfile)
-    #     csvwriter.writerow(cf.LIST_RM_ELEMENTS)
-    #     csvwriter.writerow([url,len(headings),len(paragraphs), len(quotes),
-    #                         len(fenced_blocks), len(code_blocks),len(html_blocks),
-    #                         len(link_blocks),  tot_code_blocks, tot_text_blocks, len(blank_lines)])
-
-    # Return stats_single_lang if needed
-    return
-
-
 
 
 def split_datasets(global_csv, out_code, out_text):
@@ -281,77 +188,6 @@ def split_datasets(global_csv, out_code, out_text):
 
 
 
-
-def read_data(csv_file):
-
-    df_readme=pd.read_csv(csv_file, sep=',')
-    df_readme.dropna(inplace=True)
-    dict_readme = {}
-
-    for index, row in df_readme.iterrows():
-        if row['readme'] :
-            cat_list = []
-            for key, value in row[2:-1].to_dict().items():
-
-                if value == 1 and key not in cat_list:
-                    cat_list.append(key)
-
-            dict_readme.update({row['readme']: cat_list})
-
-    df_new = pd.Series(dict_readme)
-    training, testing = [i.to_dict() for i in train_test_split(df_new, train_size=0.9)]
-
-    return training, testing
-
-
-def merge_csv(file1, file2, output_file):
-    """
-    Merge two CSV files with the same structure.
-
-    Parameters:
-    - file1 (str): Path to the first CSV file.
-    - file2 (str): Path to the second CSV file.
-    - output_file (str): Path to save the merged CSV file.
-    """
-    # Read the CSV files into DataFrames
-    df1 = pd.read_csv(file1)
-    df2 = pd.read_csv(file2)
-
-    # Concatenate the DataFrames along the rows
-    merged_df = pd.concat([df1, df2], ignore_index=True)
-
-    # Save the merged DataFrame to a new CSV file
-    merged_df.to_csv(output_file, index=False)
-
-def split_txt_file(file_path, lines_per_file=500):
-    """
-    Split a txt file into smaller txt files. Each smaller file contains up to a specified number of lines.
-
-    Args:
-    - file_path (str): Path to the input txt file.
-    - lines_per_file (int, optional): Number of lines each smaller file should contain. Defaults to 500.
-
-    Returns:
-    - list: List of paths to the smaller txt files.
-    """
-    with open(file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-
-    total_lines = len(lines)
-    number_of_files = total_lines // lines_per_file + (1 if total_lines % lines_per_file else 0)
-    output_files = []
-
-    for i in range(number_of_files):
-        start_index = i * lines_per_file
-        end_index = start_index + lines_per_file
-        output_file_path = f"{file_path}_part_{i + 1}.txt"
-        with open(output_file_path, 'w', encoding='utf-8') as output_file:
-            output_file.writelines(lines[start_index:end_index])
-        output_files.append(output_file_path)
-
-    return output_files
-
-
 def remove_nan_values(in_csv, out_csv):
     df = pd.read_csv(in_csv)
     df_new = df.dropna()
@@ -374,10 +210,6 @@ def remove_missing_rm(dataframe, substring):
     initial_counts = {column: 0 for column in dataframe.columns}
     final_counts = {column: 0 for column in dataframe.columns}
     list_columns = ['readme_content', 'about_content']
-    # Count occurrences before removal
-    # for column in list_columns:
-    #     initial_counts[column] = dataframe[column].apply(lambda x: str(x).count(substring)).sum()
-    # Remove rows containing the substring
     contains_substring = dataframe['readme_content'].astype(str).str.contains(substring)
     #final_counts[column] = dataframe[contains_substring][column].apply(lambda x: str(x).count(substring)).sum()
     dataframe = dataframe[~contains_substring]
@@ -427,27 +259,8 @@ def count_occurrences(elements, filename):
 
 
 
-def plot_stats():
-    data = {
-        'Image': 14858.0,
-        'Link': 322265.0,
-        'InLineHTML': 0.0,
-        'Autolink': 0.0,
-        'CodeSpan': 189562.0,
-        'Emphasis': 62198.0,
-        'StrongEmphasis': 0.0,
-        'RawText': 780430.0
-    }
 
-    # Creating a bar plot
-    plt.figure(figsize=(10,6))
-    plt.bar(data.keys(), data.values(), color='darkred')
 
-    plt.xlabel('Cells type')
-    plt.ylabel('NUmber of cells')
-
-    plt.xticks(rotation=45)
-    plt.show()
 
 def compute_rm_stats(df_total, tot):
     sub_set = ['Image','Link', 'InLineHTML', 'Autolink', 'CodeSpan', 'Emphasis', 'StrongEmphasis', 'RawText']
@@ -468,7 +281,7 @@ def compute_rm_stats(df_total, tot):
     avg_code = tot_code / tot
     avg_text = tot_text / tot
     tot = tot_text + tot_code
-    print(int(avg_code))
+
     #print (tot_text + tot_code)
     return avg_code, avg_text, tot
 
@@ -481,24 +294,15 @@ def compute_rm_stats(df_total, tot):
 
 # Given data
 
-data = {
-    'stars': 9885.334775710371,
-    'forks': 1852.6166161834703,
-    'contributors': 90.81739506707054,
-    'num_topics': 5.5822876099812495
-}
 
-def plot_bar_chart(data, title, categories, title_fontsize=16, label_fontsize=11, tick_fontsize=24):
-    """
-    Plots a bar chart for the given data.
 
-    :param data: Dictionary with categories as keys and values to plot.
-    :param title: Title of the bar chart.
-    :param categories: List of categories to include in the plot.
-    :param title_fontsize: Font size for the chart title.
-    :param label_fontsize: Font size for the x and y labels.
-    :param tick_fontsize: Font size for the tick labels.
-    """
+def plot_bar_chart(categories, label_fontsize=11, tick_fontsize=24):
+    data = {
+        'stars': 9885.334775710371,
+        'forks': 1852.6166161834703,
+        'contributors': 90.81739506707054,
+        'num_topics': 5.5822876099812495
+    }
     # Extracting values and labels for the plot
     values = [data[cat] for cat in categories]
     labels = categories
@@ -592,17 +396,6 @@ def extract_domain_repo(domain,set,df_global, out_file):
 
 
 
-def process_url(url_list):
-    with open('spring-repo.txt', 'w', encoding='utf-8', errors='ignore') as res:
-        for url in set(url_list):
-            preprocessed = str(url).replace('/Volumes/Elements/READMEDOCS/tempo/', '').replace('__','/')
-            preprocessed = cf.GITHUB + preprocessed
-
-            res.write(f'{preprocessed}\n')
-
-
-
-
 def rm_structural_analysis(col1, col2, new_col_name, out_file, threshold):
     df = pd.read_csv(cf.LANGS_STATS_FILE, names=['domain', 'support', 'avg_code', 'avg_text', 'tot'])
     if col1 not in df or col2 not in df:
@@ -621,10 +414,5 @@ def rm_structural_analysis(col1, col2, new_col_name, out_file, threshold):
 
 
 
-# # Plotting the first bar chart for stars and forks
-# plot_bar_chart(data, 'Avg. stars and forks', ['stars', 'forks'])
-#
-# # Plotting the second bar chart for contributors and num_topics
-# plot_bar_chart(data, 'Bar Chart of Contributors and Number of Topics',  ['contributors', 'num_topics'])
 
 

@@ -2,7 +2,7 @@
 
 
 # github configs
-TOKEN = "your github token go here"
+TOKEN = "your token goes here"
 
 # src path
 

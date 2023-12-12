@@ -10,28 +10,6 @@ import sys
 from send2trash import send2trash
 
 
-def download_repo(dataset, out_path):
-    if not os.path.exists(out_path):
-        pd.DataFrame(columns=cf.LIST_RM_ELEMENTS).to_csv(out_path, index=False)
-    dump_repo = du.get_already_downloaded(out_path)
-    df = pd.read_csv(dataset)
-    for url in df['repo_url'].values:
-        if dump_repo is not None and str(url).replace('.git','') in dump_repo:
-            print("Already downloaded")
-        else:
-            local_path = 'repo'  # Local directory name for the cloned repository
-            try:
-                subprocess.run(['git', 'clone', url, local_path], check=True)
-                # Construct the path to the README.MD file
-                readme_path = os.path.join(local_path, 'README.MD')
-                # Add the repository directory to the system path
-                sys.path.append(local_path)
-
-                if os.path.exists(readme_path):
-                    du.parse_rm(readme_path, url, cf.ROOT_DST + out_path)
-                send2trash(local_path)
-            except:
-                continue
 
 
 def format_url_gh(url):
@@ -131,49 +109,6 @@ def fetch_github_details_to_csv(list_repo, out_path):
 
 
 
-
-
-def generate_date_intervals(years, interval_months):
-    """
-    Generate a list of date tuples covering intervals over a number of years.
-
-    Args:
-    - years (int, optional): Number of years to cover. Defaults to 10.
-    - interval_months (int, optional): Number of months per interval. Defaults to 6.
-
-    Returns:
-    - list: List of date tuples in the format (start_date, end_date) where each date is a string in the format AAAA-MM-DD.
-    """
-
-
-
-    # convert from string format to datetime format
-    #end_date = datetime.date(2013,1,1)
-    end_date = datetime.date.today()
-    start_year = end_date.year - years
-
-    current_start_date = datetime.date(start_year, 1, 1)
-    intervals = []
-
-    while current_start_date <= end_date:
-        try:
-            current_end_date = current_start_date.replace(
-                month=current_start_date.month + interval_months) - datetime.timedelta(days=1)
-        except ValueError:
-            # Handles the case when the current month + interval_months > 12
-            year_adjustment = (current_start_date.month + interval_months) // 12
-            month_adjustment = (current_start_date.month + interval_months) % 12
-            current_end_date = current_start_date.replace(year=current_start_date.year + year_adjustment,
-                                                          month=month_adjustment) - datetime.timedelta(days=1)
-
-        intervals.append((current_start_date.strftime("%Y-%m-%d"), current_end_date.strftime("%Y-%m-%d")))
-
-        try:
-            current_start_date = current_end_date.replace(day=1, month=current_end_date.month + 1)
-        except ValueError:
-            current_start_date = current_end_date.replace(day=1, year=current_end_date.year + 1, month=1)
-
-    return intervals
 
 
 def process_paginated_list(paginated_list):

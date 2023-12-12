@@ -70,8 +70,9 @@ if __name__ == '__main__':
 
     collecting_existing_repo(args.path_unique)
     mu.get_document_repo(args.path_document, args.topic)
-    data_preprocessing(args.global_stats_file, args.global_file)
     extracting_summarization_data(args.global_file)
+    data_preprocessing(args.global_stats_file, args.global_file)
+
     compute_domain_stats(args.lang_dict_file, args.global_file, args.langs_stats_file, args.langs_stats_folder)
     du.rm_structural_analysis('avg_code', 'avg_text', 'avg_tot', args.langs_aggr_file, args.support)
 
