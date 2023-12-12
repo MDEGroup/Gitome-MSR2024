@@ -7,7 +7,7 @@ This repository contains the instructions to collect the Gitome dataset availabl
 
 This repository contains the source code implementation used to replicate the experimental results obtained in the submitted study to the 21st International Conference on Mining Software Repositories (MSR204).
 
-"Gitome: a curated dataset for README summarization"
+*"Gitome: A curated dataset for GitHub README-related tasks"*
 
 authored by:
 
@@ -52,7 +52,7 @@ To run the scripts, the following Python libraries need to be installed:
 
 To run the whole pipeline, please run the following command:
 
-``` python main.py --path_unique "path/to/unique" --path_document "path/to/awesome" --topic "your_topic" --global_stats_file "path/to/global_stats" --global_file "path/to/global" --lang_dict_file "path/to/lang_dict" --langs_stats_file "path/to/langs_stats" --langs_stats_folder "path/to/langs_stats_folder" --langs_aggr_file "path/to/langs_aggr" --support "path/to/support" ```
+``` python main.py --path_unique "path/to/unique" --path_document "path/to/awesome" --topic "your_topic" --global_stats_file "path/to/global_stats" --global_file "path/to/global" --lang_dict_file "path/to/lang_dict" --langs_stats_file "path/to/langs_stats" --langs_stats_folder "path/to/langs_stats_folder" --langs_aggr_file "path/to/langs_aggr" --support "support_repo" ```
 
 
 The sequence of functions is the following: 

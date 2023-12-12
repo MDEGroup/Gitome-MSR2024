@@ -57,7 +57,7 @@ def compute_domain_stats(input_data, path_global_csv, stats_file, out_folder):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run data extraction pipeline.')
     parser.add_argument('--path_unique', type=str, help='Path to unique repo')
-    parser.add_argument('--path_dcoument', type=str, help='Path to awesome repo')
+    parser.add_argument('--path_document', type=str, help='Path to awesome repo')
     parser.add_argument('--topic', type=str, help='Topic for the document repo')
     parser.add_argument('--global_stats_file', type=str, help='Global stats file path')
     parser.add_argument('--global_file', type=str, help='Global file path')
@@ -65,8 +65,7 @@ if __name__ == '__main__':
     parser.add_argument('--langs_stats_file', type=str, help='Languages stats file path')
     parser.add_argument('--langs_stats_folder', type=str, help='Languages stats folder path')
     parser.add_argument('--langs_aggr_file', type=str, help='Languages aggregate file path')
-    parser.add_argument('--support', type=str, help='Support file path')
-
+    parser.add_argument('--support', type=int, help='Support in terms of Github repositories')
     args = parser.parse_args()
 
     collecting_existing_repo(args.path_unique)
